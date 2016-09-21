@@ -1,11 +1,11 @@
 import sys
 import numpy as np
 from PyQt4 import QtCore, QtGui, uic
- 
+
 qtCreatorFile = "lamina.ui" # Enter file here.
- 
+
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
- 
+
 class MyApp(QtGui.QMainWindow, Ui_MainWindow):
 	def __init__(self):
 		QtGui.QMainWindow.__init__(self)
@@ -19,10 +19,10 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
 		self.textEdit_6.setDisabled(True)
 		self.textEdit_7.setDisabled(True)
 		self.textEdit_8.setDisabled(True)
- 		self.textEdit_9.setDisabled(False)
+		self.textEdit_9.setDisabled(False)
 		self.textEdit_10.setDisabled(False)
 		self.textEdit_11.setDisabled(False)
-	
+
 	def calc_def(self):
 		self.textEdit_9.setDisabled(True)
 		self.textEdit_10.setDisabled(True)
@@ -30,7 +30,7 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
 		self.textEdit_6.setDisabled(False)
 		self.textEdit_7.setDisabled(False)
 		self.textEdit_8.setDisabled(False)
-		
+
 	def clicar(self):
 #S = [1/E1 -v21/E2 0
 #-v12/E1 1/E2 0
@@ -53,30 +53,28 @@ class MyApp(QtGui.QMainWindow, Ui_MainWindow):
 			pass
 		except ValueError:
 			self.textBrowser.setText("Confirme se todos os dados de input estao preenchidos e sao numericos")
-			
+
 		if self.radioButton.isChecked():
 			resposta = "CALCULANDO AS TENSOES" + "\n"+"\n"
-			
+
 			resposta = resposta + "\n" + "MATRIZ S" + "\n" +str(S)+"\n"
 			resposta = resposta + "\n" + "MATRIZ Q" + "\n" +str(Q)
 			self.textBrowser.setText(resposta)
 		elif self.radioButton_2.isChecked():
 			resposta = "CALCULANDO AS DEFORMACOES" + "\n"+"\n"
 			tensao = np.array([[self.textEdit_6,self.textEdit_7,self.textEdit_8]])
-			
+
 			resposta = resposta + "\n" + "MATRIZ S" + "\n" +str(S)+"\n"
 			resposta = resposta + "\n" + "MATRIZ Q" + "\n" +str(Q)
 			self.textBrowser.setText(resposta)
-		
+
 	def qbarra():
 		 pass
-		
-        
- 
+
+
+
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
     window = MyApp()
     window.show()
     sys.exit(app.exec_())
-
-
